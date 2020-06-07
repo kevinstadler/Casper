@@ -1,3 +1,5 @@
+assets/built/
+
 b-cov
 *.seed
 *.log
