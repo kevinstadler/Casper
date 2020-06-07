@@ -2,6 +2,7 @@
 {{!-- The tag above means: insert everything in this file
 into the {body} of the default.hbs template --}}
 
+{{!--
 <header class="site-home-header">
     {{> header-background background=@site.cover_image}} {{!--Special header-image.hbs partial to generate the background image--}}
         <div class="inner">
@@ -19,6 +20,7 @@ into the {body} of the default.hbs template --}}
         </div>
     </div>
 </header>
+--}}
 
 {{!-- The main content area --}}
 <main id="site-main" class="site-main outer">
@@ -36,12 +38,27 @@ into the {body} of the default.hbs template --}}
     </div>
 </main>
 
+{{!--
 {{> site-header}}
+--}}
 
 {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
 {{#contentFor "scripts"}}
 <script>
+    const backgroundId = Math.floor(Math.random() * 15); // 0 - 14
+    var largestWidthLoaded = 0;
+    function setResponsiveBackground () {
+      const minimumWidth = window.innerWidth * Math.max(1, (4 * window.innerHeight ) / ( 3 * window.innerWidth));
+      const responsiveWidth = 200 * Math.ceil(minimumWidth / 200);
+      if (responsiveWidth > largestWidthLoaded) {
+        largestWidthLoaded = responsiveWidth;
+        const bgImageFilename = 'https://res.cloudinary.com/futile/image/upload/w_' + responsiveWidth + ',q_auto/twyi/bg/bg' + backgroundId + '.jpg';
+        document.getElementById('site-main').style.backgroundImage = "url('" + bgImageFilename + "')";
+      }
+    }
+    setResponsiveBackground();
 
+{{!--
     // NOTE: Scroll performance is poor in Safari
     // - this appears to be due to the events firing much more slowly in Safari.
     //   Dropping the scroll event and using only a raf loop results in smoother
@@ -65,6 +82,7 @@ into the {body} of the default.hbs template --}}
             lastWindowHeight = window.innerHeight;
             lastDocumentHeight = $(document).height();
             requestTick();
+            setResponsiveBackground();
         }
 
         function requestTick() {
@@ -94,5 +112,6 @@ into the {body} of the default.hbs template --}}
         update();
 
     });
+--}}
 </script>
 {{/contentFor}}
