@@ -283,7 +283,9 @@ body {
     right: 0;
     left: 0;
     z-index: 1000;
+/* inherit white background from site-header instead
     background: color(var(--darkgrey) l(-5%));
+*/
 }
 
 .site-nav {
@@ -316,7 +318,9 @@ body {
 .site-header-background:not(.responsive-header-img) .site-nav-left-wrapper:after,
 .site-nav-main .site-nav-left-wrapper:after {
     right: 0;
+/*
     background: linear-gradient(to right, color(var(--darkgrey) l(-5%) a(0)) 0%,color(var(--darkgrey) l(-5%)) 100%);
+*/
 }
 
 .site-nav-left {
@@ -348,6 +352,16 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 
 */
 
+@font-face {
+    font-family: 'blocusregular';
+    src: url('../fonts/blocuswebfont.eot');
+    src: url('../fonts/blocuswebfont.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/blocuswebfont.woff') format('woff'),
+        url('../fonts/blocuswebfont.ttf') format('truetype'),
+        url('../fonts/blocuswebfont.svg#blocusregular') format('svg');
+
+}
+
 .site-nav-logo {
     position: relative;
     z-index: 100;
@@ -355,16 +369,23 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     display: inline-block;
     margin-right: 32px;
     padding: 12px 0;
-    color: #fff;
+    color: #000;
     font-size: 1.7rem;
     line-height: 1.8rem;
     font-weight: bold;
     letter-spacing: -0.5px;
     text-transform: none;
+    /* additions: */
+    font-family: 'blocusregular';
+    font-size: 5rem;
+    text-shadow: 10px 5px #00000026;
+    transition: text-shadow 0.5s ease;
 }
 
 .site-nav-logo:hover {
     text-decoration: none;
+    /* additions: */
+    text-shadow: 0px 0px #00000000;
 }
 
 .site-nav-logo img {
