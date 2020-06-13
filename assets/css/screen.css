@@ -626,16 +626,17 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 /* ---------------------------------------------------------- */
 
 .posts {
-    overflow-x: hidden;
+    overflow: hidden;
+    padding: 5vw 0;
 }
 
 .post-feed {
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -20px;
+/*    margin: 0 -20px; */
     padding: 50px 0 0;
-    background: #fff;
+/*    background: #fff; */
 }
 
 .post-card {
@@ -674,6 +675,43 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 
 .post-card-content-link:hover {
     text-decoration: none;
+}
+
+.post-strip {
+    position: relative;
+    flex: 1 1 301px;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+/*    margin: 0 0 40px;
+    padding: 0 20px 40px;
+    min-height: 220px;
+    border-bottom: 1px solid color(var(--lightgrey) l(+12%));
+    background-size: cover; */
+    transition: all 0.5s ease;
+}
+
+.post-strip-content {
+    background: hsla(0,0%,100%,.7);
+    padding: 5px;
+    transform: rotate(180deg);
+}
+
+.post-strip-content-link {
+    position: relative;
+    display: inline-block; /* necessary for rotation */
+    width: fit-content;
+    font-family: "blocusregular", "Liu Jian Mao Cao", "Long Cang", "Noto Serif SC", fantasy;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #000;
+/*    padding: 50px; */
+}
+
+.post-strip-content-link:hover {
+    text-decoration: none;
+    transition: all .5s ease;
+    transform: rotate(180deg);
 }
 
 .post-card-header {
