@@ -63,6 +63,8 @@ body {
 .site-main {
     z-index: 100;
     flex-grow: 1;
+    /* additions: (add default background?) */
+    background-size: cover;
 }
 
 /* Full width page blocks */

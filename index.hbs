@@ -4,7 +4,7 @@ into the {body} of the default.hbs template --}}
 
 {{!--
 <header class="site-home-header">
-    {{> header-background background=@site.cover_image}} {{!--Special header-image.hbs partial to generate the background image--}}
+    {{> header-background background=@site.cover_image}} --}}{{!--Special header-image.hbs partial to generate the background image--}}{{!--
         <div class="inner">
             {{> "site-nav"}}
             <div class="site-header-content">
@@ -57,6 +57,8 @@ into the {body} of the default.hbs template --}}
       }
     }
     setResponsiveBackground();
+    window.addEventListener('resize', setResponsiveBackground);
+</script>
 
 {{!--
     // NOTE: Scroll performance is poor in Safari
@@ -112,6 +114,6 @@ into the {body} of the default.hbs template --}}
         update();
 
     });
---}}
 </script>
+--}}
 {{/contentFor}}
