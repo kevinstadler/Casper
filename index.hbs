@@ -45,6 +45,39 @@ into the {body} of the default.hbs template --}}
 {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
 {{#contentFor "scripts"}}
 <script>
+    function setRandomHorizontalOffset(element) {
+        // TODO check if hovering, if so interrupt?
+        const leftSpaceProportion = Math.random() * .99;
+        const odds = leftSpaceProportion / (1 - leftSpaceProportion);
+        element.children[0].style.flexGrow = odds;
+        element.children[2].style.flexShrink = odds;
+        // queue next one after 15 - 90 seconds mwahahaha
+        setTimeout(function() {
+            setRandomHorizontalOffset(element);
+        }, 1000 * (15 + 75 * Math.random()));
+    }
+
+    const posts = document.getElementsByClassName('post-strip');
+
+    // do some random!
+    for (var i = 0; i < posts.length; i++) {
+        // set new (vertical) order using flex-box order feature:
+        posts[i].style.order = Math.floor( posts.length * Math.random() );
+        // random horizontal offset across the page
+        setRandomHorizontalOffset(posts[i]);
+        // slight random vertical offset within the line-strips
+        // (make sure randomization can't produce proximity closer than 20% of item height)
+        posts[i].style.paddingTop = Math.random() * .9 * (posts[i].clientHeight - posts[i].children[0].clientHeight) + 'px';
+    }
+
+    // first horizontal shift is abrupt, but then turn on smooth animation
+    setTimeout(function() {
+        for (var i = 0; i < posts.length; i++) {
+                posts[i].children[0].style.transitionProperty = 'flex';
+                console.log(posts[i].style);
+            }
+        }, 500);
+
     const backgroundId = Math.floor(Math.random() * 15); // 0 - 14
     var largestWidthLoaded = 0;
     function setResponsiveBackground () {
@@ -52,12 +85,16 @@ into the {body} of the default.hbs template --}}
       const responsiveWidth = 200 * Math.ceil(minimumWidth / 200);
       if (responsiveWidth > largestWidthLoaded) {
         largestWidthLoaded = responsiveWidth;
-        const bgImageFilename = 'https://res.cloudinary.com/futile/image/upload/w_' + responsiveWidth + ',q_auto/twyi/bg/bg' + backgroundId + '.jpg';
+        const bgImageFilename = 'https://res.cloudinary.com/futile/image/upload/w_' + responsiveWidth + ',q_auto,fl_progressive:steep/twyi/bg/bg' + backgroundId + '.jpg';
         document.getElementById('site-main').style.backgroundImage = "url('" + bgImageFilename + "')";
       }
     }
     setResponsiveBackground();
-    window.addEventListener('resize', setResponsiveBackground);
+    window.addEventListener('resize', function() {
+        setResponsiveBackground();
+        // TODO clamp left-Padding?
+    });
+
 </script>
 
 {{!--

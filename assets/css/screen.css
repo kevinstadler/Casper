@@ -65,6 +65,8 @@ body {
     flex-grow: 1;
     /* additions: (add default background?) */
     background-size: cover;
+    background-position: center center;
+/*    background-color: #BBB; */
 }
 
 /* Full width page blocks */
@@ -626,7 +628,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 /* ---------------------------------------------------------- */
 
 .posts {
-    overflow: hidden;
+/*    overflow: hidden; */
     padding: 5vw 0;
 }
 
@@ -678,39 +680,47 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 }
 
 .post-strip {
-    position: relative;
-    flex: 1 1 301px;
+    flex-basis: 100%;
+    min-height: max(3em, 9vh);
+
     display: flex;
-    flex-direction: column;
-    overflow: visible;
-/*    margin: 0 0 40px;
-    padding: 0 20px 40px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: stretch;
+/*    padding: 0 20px 40px;
     min-height: 220px;
     border-bottom: 1px solid color(var(--lightgrey) l(+12%));
     background-size: cover; */
-    transition: all 0.5s ease;
 }
 
-.post-strip-content {
-    background: hsla(0,0%,100%,.7);
-    padding: 5px;
-    transform: rotate(180deg);
+.post-strip > * {
+    flex-grow: 1;
+    transition: none 2s ease;
 }
 
 .post-strip-content-link {
+    flex-grow: 0;
+    flex-shrink: 0;
+    max-width: fit-content;
     position: relative;
     display: inline-block; /* necessary for rotation */
-    width: fit-content;
-    font-family: "blocusregular", "Liu Jian Mao Cao", "Long Cang", "Noto Serif SC", fantasy;
+    font-family: "blocusregular", "Long Cang", fantasy;
     font-size: 3rem;
     font-weight: 700;
     color: #000;
+    /* animate the rotation transform, but not the random margin application triggered from javascript */
+    transition: transform .5s ease;
 /*    padding: 50px; */
 }
 
 .post-strip-content-link:hover {
     text-decoration: none;
-    transition: all .5s ease;
+    transform: rotate(180deg);
+}
+
+.post-strip-content {
+    background: hsla(0,0%,100%,.7);
+    padding: 5px;
     transform: rotate(180deg);
 }
 
