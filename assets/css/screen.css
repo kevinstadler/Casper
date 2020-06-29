@@ -290,6 +290,12 @@ body {
 /* inherit white background from site-header instead
     background: color(var(--darkgrey) l(-5%));
 */
+    background: #fffd;
+}
+
+.post-title {
+    font-size: 3.2rem;
+    font-family: 'Authentic', 'Noto Sans SC', sans-serif;
 }
 
 .site-nav {
@@ -363,7 +369,13 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
         url('../fonts/blocuswebfont.woff') format('woff'),
         url('../fonts/blocuswebfont.ttf') format('truetype'),
         url('../fonts/blocuswebfont.svg#blocusregular') format('svg');
+}
 
+@font-face {
+    font-family: 'Authentic';
+    src: url('../fonts/AUTHENTICSans-90.otf') format('opentype'),
+        url('../fonts/AUTHENTICSans-90.woff') format('woff'),
+        url('../fonts/AUTHENTICSans-90.woff2') format('woff2');
 }
 
 .site-nav-logo {
@@ -380,7 +392,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     letter-spacing: -0.5px;
     text-transform: none;
     /* additions: */
-    font-family: 'blocusregular';
+    font-family: 'blocusregular', serif;
     font-size: 5rem;
     text-shadow: 10px 5px #00000026;
     transition: text-shadow 0.5s ease;
@@ -764,7 +776,6 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 .post-card-excerpt {
     max-width: 56em;
     color: var(--midgrey);
-    font-family: Georgia, serif;
 }
 
 .post-card-excerpt p {
@@ -1057,7 +1068,6 @@ make sure this only happens on large viewports / desktop-ish devices.
 .post-full-custom-excerpt {
     margin: 20px 0 0;
     color: var(--midgrey);
-    font-family: Georgia, serif;
     font-size: 2.3rem;
     line-height: 1.4em;
     font-weight: 300;
@@ -1085,12 +1095,15 @@ make sure this only happens on large viewports / desktop-ish devices.
     height: auto;
 }
 
+h1, h2, h3, h4, h5, .post-full-content {
+    font-family: 'Authentic', 'Noto Sans SC', sans-serif;
+}
+
 .post-full-content {
     position: relative;
     margin: 0 auto;
     padding: 0 170px 6vw;
     min-height: 230px;
-    font-family: Georgia, serif;
     font-size: 2.0rem;
     line-height: 1.6em;
     background: #fff;
@@ -2162,8 +2175,26 @@ Usage (In Ghost editor):
     max-width: 100vw;
 }
 
+/* figure to the left of the text fun (default margins are set below) */
 .post-full-content figure {
-    margin: 0.8em 0 2.3em;
+    margin: 0.8em 0 2.3em -50vw;
+}
+
+@media (min-width: 800px) {
+    .post-full {
+        position: relative;
+        width: 850px; /* 1040 - 2*170 */
+        max-width: 60%;
+        float: right;
+    }
+
+    .post-full-content {
+        padding: 0 0 6vw;
+    }
+
+    .post-full-content .kg-image {
+        max-width: 60vw;
+    }
 }
 
 .post-full-content h1 + figure,
@@ -2218,7 +2249,7 @@ Usage (In Ghost editor):
 
 .kg-gallery-row {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
 }
 
@@ -2229,12 +2260,21 @@ Usage (In Ghost editor):
     height: 100%;
 }
 
+/* horizontal gallery layout when screen wide enough */
+@media (min-width: 800px) {
+
+.kg-gallery-row {
+    flex-direction: row;
+}
+
 .kg-gallery-row:not(:first-of-type) {
     margin: 0.75em 0 0 0;
 }
 
 .kg-gallery-image:not(:first-of-type) {
     margin: 0 0 0 0.75em;
+}
+
 }
 
 .kg-gallery-card + .kg-image-card.kg-width-wide,
