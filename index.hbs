@@ -46,11 +46,12 @@ into the {body} of the default.hbs template --}}
 {{#contentFor "scripts"}}
 <script>
     function setRandomHorizontalOffset(element) {
-        // TODO check if hovering, if so interrupt?
-        const leftSpaceProportion = Math.random() * .99;
-        const odds = leftSpaceProportion / (1 - leftSpaceProportion);
-        element.children[0].style.flexGrow = odds;
-        element.children[2].style.flexShrink = odds;
+        if (document.visibilityState == 'visible' && !element.matches(':hover')) {
+            const leftSpaceProportion = Math.random() * .99;
+            const odds = leftSpaceProportion / (1 - leftSpaceProportion);
+            element.children[0].style.flexGrow = odds;
+            element.children[2].style.flexShrink = odds;
+        }
         // queue next one after 15 - 90 seconds mwahahaha
         setTimeout(function() {
             setRandomHorizontalOffset(element);
@@ -74,7 +75,6 @@ into the {body} of the default.hbs template --}}
     setTimeout(function() {
         for (var i = 0; i < posts.length; i++) {
                 posts[i].children[0].style.transitionProperty = 'flex';
-                console.log(posts[i].style);
             }
         }, 500);
 
