@@ -78,7 +78,7 @@ into the {body} of the default.hbs template --}}
             }
         }, 500);
 
-    const backgroundId = Math.floor(Math.random() * 15); // 0 - 14
+    const backgroundId = Math.floor(Math.random() * 14); // 0 - 13
     var largestWidthLoaded = 0;
     function setResponsiveBackground () {
       const minimumWidth = window.innerWidth * Math.max(1, (4 * window.innerHeight ) / ( 3 * window.innerWidth));
