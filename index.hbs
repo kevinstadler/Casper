@@ -68,7 +68,7 @@ into the {body} of the default.hbs template --}}
         setRandomHorizontalOffset(posts[i]);
         // slight random vertical offset within the line-strips
         // (make sure randomization can't produce proximity closer than 20% of item height)
-        posts[i].style.paddingTop = Math.random() * .9 * (posts[i].clientHeight - posts[i].children[0].clientHeight) + 'px';
+        posts[i].style.paddingTop = Math.random() * .8 * (posts[i].clientHeight - posts[i].children[1].clientHeight) + 'px';
     }
 
     // first horizontal shift is abrupt, but then turn on smooth animation
