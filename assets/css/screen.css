@@ -172,6 +172,7 @@ body {
     font-size: 5.0rem;
     line-height: 1em;
     font-weight: 600;
+    text-align: center;
 }
 
 .site-logo {
@@ -664,16 +665,27 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     padding: 0 0 8vw 0;
 }
 
+.tag-feed {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+/*    margin: 0 -20px; */
+    padding: 0 0 8vw 0;
+}
+
 .post-card {
     position: relative;
-    flex: 1 1 301px;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
+    align-content: stretch;
     overflow: hidden;
     margin: 0 0 40px;
     padding: 0 20px 40px;
-    min-height: 220px;
+    min-width: 17em;
+/*
     border-bottom: 1px solid color(var(--lightgrey) l(+12%));
+*/
     background-size: cover;
 }
 
@@ -693,9 +705,16 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 }
 
 .post-card-content-link {
+    flex-basis: auto;
+    flex-grow: 1;
     position: relative;
-    display: block;
     color: var(--darkgrey);
+    background-size: cover;
+    /* give card a 3:2 aspect ratio */
+    height: 0;
+    padding-bottom: 66%;
+    display: flex;
+    flex-direction: column;
 }
 
 .post-card-content-link:hover {
@@ -747,15 +766,23 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 }
 
 .post-card-header {
-    margin: 15px 0 0;
+    color: var(--lightgrey);
+    margin: 0;
+/*    position: relative; */
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+/* vertically align to bottom of div */
+.post-card-content::before {
+    display: inline-block;
+    height: 100%;
+    content: '';
 }
 
 .post-feed .no-image .post-card-content-link {
     padding: 0;
-}
-
-.no-image .post-card-header {
-    margin-top: 0;
 }
 
 .post-card-primary-tag {
@@ -768,9 +795,10 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 }
 
 .post-card-title {
-    margin: 0 0 0.4em;
+    margin: 0;
     line-height: 1.15em;
     transition: color 0.2s ease-in-out;
+    vertical-align: baseline;
 }
 
 .no-image .post-card-title {
@@ -778,6 +806,8 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 }
 
 .post-card-content {
+    background-repeat: no-repeat;
+    background-size: cover;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -1074,6 +1104,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 
 .post-full-title {
     margin: 0 0 0.2em;
+    text-align: center;
     color: color(var(--darkgrey) l(-5%));
 }
 
@@ -1097,16 +1128,14 @@ make sure this only happens on large viewports / desktop-ish devices.
     align-items: center;
     overflow: hidden;
     margin: 25px 0 50px;
-    background: color(var(--lightgrey) l(+10%));
+    background: transparent;
     border-radius: 3px;
 }
 
 .post-full-image img {
-/*
-    max-width: 1040px;
-*/
     width: 100%;
-    max-height: 100vh;
+/* limit width so that 4:3 images are always fully displayed on the screen */
+    max-width: 120vh;
     height: auto;
 }
 
