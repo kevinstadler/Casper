@@ -1,0 +1,30 @@
+{{!< default}}
+{{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
+
+<header class="site-header">
+    {{> site-header}}
+        <div class="inner site-header-content">
+            <h1 class="site-title">writing</h1>
+        </div>
+</header>
+
+<main id="site-main" class="site-main outer">
+    <div class="inner two">
+            {{#get 'tags' limit='all' include='count.posts'}}
+                {{#foreach tags}}
+                    {{#if count.posts}}
+                        <div style="max-width: 30em; margin: auto;">
+                            <h2>{{name}} ({{count.posts}} posts)</h2>
+                            <ul>
+                            {{#get "posts" filter="primary_tag:{{name}}" order="published_at DESC" limit="all"}}
+                                {{#foreach posts}}
+                                    <li><a href="{{url}}">{{title}}</a></li>
+                                {{/foreach}}
+                            {{/get}}
+                            </ul>
+                        </div>
+                    {{/if}}
+                {{/foreach}}
+            {{/get}}
+    </div>
+</main>

@@ -27,17 +27,20 @@
 {{!-- The main content area --}}
 <main id="site-main" class="site-main outer">
     <div class="inner posts">
-        <div class="tag-feed">
-            {{#get "pages" filter="primary_tag:{{name}}" order="published_at DESC" limit="all" as |pages|}}
+        {{#get "pages" filter="tags:{{name}}" order="published_at DESC" limit="all" as |pages|}}
+
+            <div class="tag-feed four">
                 {{#foreach pages}}
                     {{> "post-card"}}
                 {{/foreach}}
-            {{/get}}
+            </div>
+        {{/get}}
 {{/tag}}
+{{!--
             {{#foreach posts}}
-                {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
                 {{> "post-card"}}
             {{/foreach}}
+--}}
         </div>
     </div>
 </main>
